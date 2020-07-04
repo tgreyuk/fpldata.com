@@ -23,7 +23,11 @@
   "dependencies": {
     "@nestjs/common": "^7.0.0",
     "@nestjs/core": "^7.0.0",
+    "@nestjs/graphql": "^7.5.1",
     "@nestjs/platform-express": "^7.0.0",
+    "apollo-server-express": "^2.15.1",
+    "dataloader": "^2.0.0",
+    "humps": "^2.0.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.5.4"
@@ -42,6 +46,8 @@
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-import": "^2.20.1",
     "jest": "26.0.1",
+    "json-schema-to-typescript": "^9.1.1",
+    "json-schemify": "0.0.10",
     "prettier": "^1.19.1",
     "supertest": "^4.0.2",
     "ts-jest": "26.1.0",

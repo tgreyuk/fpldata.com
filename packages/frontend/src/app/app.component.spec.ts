@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'ngx-fpldata'`, () => {
+  it(`should have as title 'fpldata-frontend'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('ngx-fpldata');
+    expect(app.title).toEqual('fpldata-frontend');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('ngx-fpldata app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('fpldata-frontend app is running!');
   });
 });
