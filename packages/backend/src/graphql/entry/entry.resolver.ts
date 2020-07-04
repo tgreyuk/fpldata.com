@@ -15,9 +15,27 @@ export class EntryResolver {
           return {
             firstName: entry.playerFirstName,
             lastName: entry.playerLastName,
+            region: entry.playerRegionName,
+            flagIso: this.getFlagIso(entry.playerRegionIsoCodeShort),
           };
         }),
       );
     });
+  }
+
+  getFlagIso(region: string) {
+    if (region === 'EN') {
+      return 'gb-eng';
+    }
+    if (region === 'NN') {
+      return 'gb-nir';
+    }
+    if (region === 'WA') {
+      return 'gb-wls';
+    }
+    if (region === 'S1') {
+      return 'gb-sct';
+    }
+    return region.toLowerCase();
   }
 }

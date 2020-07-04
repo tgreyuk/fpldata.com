@@ -10,6 +10,8 @@ export interface Entry {
     id: number;
     firstName: string;
     lastName: string;
+    region: string;
+    flagIso: string;
 }
 
 export interface IQuery {

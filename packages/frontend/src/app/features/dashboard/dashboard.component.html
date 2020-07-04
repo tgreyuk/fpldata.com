@@ -1,1 +1,5 @@
-<h1 *ngIf="entry">{{ entry.firstName }} {{ entry.lastName }}</h1>
+<div *ngIf="entry">
+  <h1>{{ entry.firstName }} {{ entry.lastName }}</h1>
+  <p>{{ entry.region }}</p>
+  <img src="assets/flags/{{ entry.flagIso }}.svg" [alt]="entry.region" />
+</div>

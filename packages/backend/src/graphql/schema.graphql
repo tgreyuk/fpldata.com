@@ -6,6 +6,8 @@ type Entry {
   id: Float!
   firstName: String!
   lastName: String!
+  region: String!
+  flagIso: String!
 }
 
 type Query {

@@ -10,4 +10,10 @@ export class Entry {
 
   @Field()
   lastName: string;
+
+  @Field()
+  region: string;
+
+  @Field()
+  flagIso: string;
 }

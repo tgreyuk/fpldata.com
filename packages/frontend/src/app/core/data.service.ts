@@ -25,6 +25,8 @@ export class DataService {
           entry(id: ${id}) {
             firstName
             lastName
+            region
+            flagIso
           }
         }
       `
