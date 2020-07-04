@@ -1,0 +1,13 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Entry {
+  id: Float!
+  firstName: String!
+  lastName: String!
+}
+
+type Query {
+  entry(id: Int!): Entry!
+}
