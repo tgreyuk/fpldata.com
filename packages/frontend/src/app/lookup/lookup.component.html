@@ -1,0 +1,40 @@
+<h1>fpldata.com</h1>
+
+<p>Data analysis tool for Fantasy Premier League managers.</p>
+
+<hr />
+
+<div *ngIf="hasError" role="alert">
+  There was an error.
+</div>
+
+<h2>Lookup</h2>
+
+<p *ngIf="hasValidationErrors">
+  Entry ID must be a number
+</p>
+
+<form [formGroup]="lookupForm" (ngSubmit)="onSubmit()">
+  <label
+    >Name:
+    <input
+      type="text"
+      aria-describedby="emailHelp"
+      formControlName="entryId"
+      maxlength="10"
+    />
+  </label>
+
+  <button type="submit">Find Entry</button>
+</form>
+
+<div id="emailHelp">
+  <p>
+    <strong>How to find your id?</strong>
+  </p>
+  <p>
+    Navigate to your points screen and your id is included in the page URL:
+    <br />
+    fantasy.premierleague.com/a/team/ <strong>[id]</strong>/event/1
+  </p>
+</div>
