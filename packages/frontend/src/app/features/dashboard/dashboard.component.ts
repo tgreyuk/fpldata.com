@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Entry } from 'src/app/core/data.service.types';
 
 import { DataService } from '../../core/data.service';

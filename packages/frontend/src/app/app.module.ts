@@ -1,15 +1,14 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LookupComponent } from './features/lookup/lookup.component';
-import { DashboardComponent } from './features/dashboard/dashboard.component';
-import { HttpClientModule } from '@angular/common/http';
+import { LookupModule } from './lookup/lookup.module';
 
 @NgModule({
-  declarations: [AppComponent, LookupComponent, DashboardComponent],
-  imports: [HttpClientModule, BrowserModule, AppRoutingModule],
+  declarations: [AppComponent],
+  imports: [BrowserModule, LookupModule, HttpClientModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
 })

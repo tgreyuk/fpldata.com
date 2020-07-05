@@ -1,13 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LookupComponent } from '../app/features/lookup/lookup.component';
-import { DashboardComponent } from './features/dashboard/dashboard.component';
+
+import { LookupComponent } from './lookup/lookup.component';
 
 const routes: Routes = [
   { path: '', component: LookupComponent },
+  {
+    path: ':id',
+
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./features/dashboard/dashboard.module').then(
+            (m) => m.DashboardModule
+          ),
+      },
+    ],
+  },
   { path: 'error', component: LookupComponent },
-  { path: 'dashboard/:id', component: DashboardComponent },
-  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({

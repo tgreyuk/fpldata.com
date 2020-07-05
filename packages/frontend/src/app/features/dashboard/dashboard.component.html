@@ -1,5 +1,9 @@
 <div *ngIf="entry">
   <h1>{{ entry.firstName }} {{ entry.lastName }}</h1>
   <p>{{ entry.region }}</p>
-  <img src="assets/flags/{{ entry.flagIso }}.svg" [alt]="entry.region" />
+  <img
+    width="100"
+    src="assets/flags/{{ entry.flagIso }}.svg"
+    [alt]="entry.region"
+  />
 </div>
