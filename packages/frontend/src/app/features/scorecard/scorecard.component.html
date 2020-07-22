@@ -1,0 +1,42 @@
+<div *ngIf="entry">
+  <h1>{{ entry.firstName }} {{ entry.lastName }}</h1>
+  <p>{{ entry.region }}</p>
+  <img
+    width="100"
+    src="assets/flags/{{ entry.flagIso }}.svg"
+    [alt]="entry.region"
+  />
+</div>
+<table *ngIf="scoreCard">
+  <tr>
+    <th>Action</th>
+    <th class="amount">Value</th>
+    <th class="amount">Qty</th>
+
+    <th class="amount">Total</th>
+  </tr>
+  <tr *ngFor="let action of scoreCard.actions">
+    <td>{{ action.description }}</td>
+    <td class="amount">{{ action.points }}</td>
+    <td
+      class="amount"
+      [title]="action.valuex1 + ' base + ' + action.valuex2 + ' captain'"
+    >
+      {{ action.value }}
+    </td>
+    <td [class]="getAmountClass(action.total)">{{ action.total }}</td>
+  </tr>
+
+  <tr>
+    <td class="total" colspan="3">Points scored</td>
+    <td class="total">{{ scoreCard.grossTotal }}</td>
+  </tr>
+  <tr>
+    <td class="total" colspan="3">Total transfer cost</td>
+    <td class="total">{{ scoreCard.transferCost }}</td>
+  </tr>
+  <tr>
+    <td class="total" colspan="3">Overall points total</td>
+    <td class="total">{{ scoreCard.netTotal }}</td>
+  </tr>
+</table>

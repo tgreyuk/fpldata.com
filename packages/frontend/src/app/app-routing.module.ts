@@ -12,8 +12,8 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () =>
-          import('./features/dashboard/dashboard.module').then(
-            (m) => m.DashboardModule
+          import('./features/scorecard/scorecard.module').then(
+            (m) => m.ScoreCardModule
           ),
       },
     ],

@@ -18,25 +18,41 @@ interface QueryResult {
 export class DataService {
   constructor(private http: HttpClient) {}
 
-  getEntry(id: number): Observable<Entry> {
+  getEntry(id: string): Observable<Entry> {
     return this.query(
       gql`
-        query {
-          entry(id: ${id}) {
-            firstName
+        query($id: Int!) {
+          entry(id: $id) {
+            currentEvent
             lastName
-            region
             flagIso
+            scoreCard {
+              grossTotal
+              transferCost
+              netTotal
+
+              actions {
+                description
+                points
+                value
+                valuex1
+                valuex2
+                valuex3
+                total
+              }
+            }
           }
         }
-      `
+      `,
+      { id: parseInt(id, 0) }
     ).pipe(map((result) => result.entry));
   }
 
-  private query(query: DocumentNode): Observable<QueryResult> {
+  private query(query: DocumentNode, variables: {}): Observable<QueryResult> {
     return this.http
       .post<{ data: QueryResult }>(`http://localhost:3000/graphql`, {
         query: print(query),
+        variables,
       })
       .pipe(map((result) => result.data));
   }
