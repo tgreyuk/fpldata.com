@@ -34,6 +34,6 @@ lerna-debug.log*
 !.vscode/extensions.json
 
 # Other
-/src/dataloader/fixtures
-/src/dataloader/schemas
-/src/dataloader/interfaces
+/src/fplapi/typings/fixtures
+/src/fplapi/typings/schemas
+

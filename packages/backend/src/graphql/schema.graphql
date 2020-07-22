@@ -8,8 +8,49 @@ type Entry {
   lastName: String!
   region: String!
   flagIso: String!
+  currentEvent: Float!
+  scoreCard: ScoreCard!
 }
 
 type Query {
   entry(id: Int!): Entry!
+}
+
+enum ScoreActionType {
+  PLAYED_UPTO_60_MINS
+  PLAYED_60_PLUS_MINS
+  GOALS_SCORED_DEF
+  GOALS_SCORED_MID
+  GOALS_SCORED_FWD
+  ASSISTS
+  CLEAN_SHEETS_DEF
+  CLEAN_SHEETS_MID
+  BONUS_1
+  BONUS_2
+  BONUS_3
+  PENALTIES_SAVED
+  EVERY_3_SAVES
+  OWN_GOALS
+  YELLOW_CARDS
+  RED_CARDS
+  EVERY_2_GOALS_CONCEDED
+  PENALTIES_MISSED
+}
+
+type ScoreCard {
+  grossTotal: Float!
+  actions: [ScoreCardAction!]!
+  transferCost: Float!
+  netTotal: Float!
+}
+
+type ScoreCardAction {
+  type: ScoreActionType!
+  description: String!
+  points: Float!
+  value: Float!
+  valuex1: Float!
+  valuex2: Float!
+  valuex3: Float!
+  total: Float!
 }
