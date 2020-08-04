@@ -1,0 +1,1 @@
+{"$schema":"http://json-schema.org/draft-07/schema#","type":"object","properties":{"identifier":{"type":"string"},"points":{"type":"integer"},"value":{"type":"integer"}}}

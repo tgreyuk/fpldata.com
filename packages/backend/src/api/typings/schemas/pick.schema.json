@@ -1,0 +1,1 @@
+{"$schema":"http://json-schema.org/draft-07/schema#","type":"object","properties":{"element":{"type":"integer"},"position":{"type":"integer"},"multiplier":{"type":"integer"},"isCaptain":{"type":"boolean"},"isViceCaptain":{"type":"boolean"}}}

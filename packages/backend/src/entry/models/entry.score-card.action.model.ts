@@ -26,7 +26,7 @@ registerEnumType(ScoreActionType, {
 });
 
 @ObjectType()
-export class ScoreCardAction {
+export class ScorecardAction {
   type: ScoreActionType;
   description: string;
   points: number;

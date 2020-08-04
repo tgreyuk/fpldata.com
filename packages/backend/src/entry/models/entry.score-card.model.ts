@@ -1,11 +1,11 @@
 import { ObjectType } from '@nestjs/graphql';
 
-import { ScoreCardAction } from './entry.score-card.action.model';
+import { ScorecardAction } from './entry.score-card.action.model';
 
 @ObjectType()
-export class ScoreCard {
+export class Scorecard {
   grossTotal: number;
-  actions: ScoreCardAction[];
+  actions: ScorecardAction[];
   transferCost: number;
   netTotal: number;
 }

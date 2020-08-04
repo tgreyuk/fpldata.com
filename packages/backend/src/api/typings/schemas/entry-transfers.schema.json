@@ -1,0 +1,1 @@
+{"$schema":"http://json-schema.org/draft-07/schema#","type":"array","items":{"type":"object","properties":{"elementIn":{"type":"integer"},"elementInCost":{"type":"integer"},"elementOut":{"type":"integer"},"elementOutCost":{"type":"integer"},"entry":{"type":"integer"},"event":{"type":"integer"},"time":{"type":"string","format":"date-time"}}}}

@@ -1,7 +1,6 @@
 import { HttpModule, Module } from '@nestjs/common';
-import { ApiService } from 'src/fplapi/api.service';
 
-import { EntryResolver } from './entry.resolver';
+import { ApiService } from './api.service';
 
 @Module({
   imports: [
@@ -9,6 +8,6 @@ import { EntryResolver } from './entry.resolver';
       baseURL: 'https://fantasy.premierleague.com/api',
     }),
   ],
-  providers: [EntryResolver, ApiService],
+  providers: [ApiService],
 })
-export class EntryModule {}
+export class ApiModule {}

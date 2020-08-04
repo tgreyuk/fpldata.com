@@ -4,12 +4,21 @@
 
 type Entry {
   id: Float!
-  firstName: String!
-  lastName: String!
-  region: String!
-  flagIso: String!
-  currentEvent: Float!
-  scoreCard: ScoreCard!
+  summary: Summary!
+  scorecard: Scorecard!
+  players: [Player!]!
+}
+
+type Player {
+  webName: String!
+  played: Float!
+  minutes: Float!
+  goalsScored: Float!
+  assists: Float!
+  basePoints: Float!
+  captainPoints: Float!
+  totalPoints: Float!
+  average: Float!
 }
 
 type Query {
@@ -37,14 +46,14 @@ enum ScoreActionType {
   PENALTIES_MISSED
 }
 
-type ScoreCard {
+type Scorecard {
   grossTotal: Float!
-  actions: [ScoreCardAction!]!
+  actions: [ScorecardAction!]!
   transferCost: Float!
   netTotal: Float!
 }
 
-type ScoreCardAction {
+type ScorecardAction {
   type: ScoreActionType!
   description: String!
   points: Float!
@@ -53,4 +62,10 @@ type ScoreCardAction {
   valuex2: Float!
   valuex3: Float!
   total: Float!
+}
+
+type Summary {
+  name: String!
+  region: String!
+  flagIso: String!
 }

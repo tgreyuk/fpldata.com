@@ -1,28 +1,28 @@
 import { join } from 'path';
 
-import { Module } from '@nestjs/common';
+import { HttpModule, Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 
-import { EntryModule } from './graphql/entry/entry.module';
+import { EntryModule } from './entry/entry.module';
 
-console.log(join(process.cwd(), '../fpldata-frontend/src/app/graphql.ts'));
 @Module({
   imports: [
-    EntryModule,
+    HttpModule.register({
+      baseURL: 'https://fantasy.premierleague.com/api',
+    }),
     GraphQLModule.forRoot({
-      autoSchemaFile: join(process.cwd(), 'src/graphql/schema.graphql'),
+      autoSchemaFile: join(process.cwd(), 'src/schema.graphql'),
       typePaths: ['./**/*.graphql'],
       definitions: {
-        path: join(
-          process.cwd(),
-          '../frontend/src/app/core/data.service.types.ts',
-        ),
+        path: join(process.cwd(), '../frontend/src/app/core/api/api.types.ts'),
       },
       debug: true,
       playground: true,
     }),
+    EntryModule,
   ],
   controllers: [],
   providers: [],
+  exports: [],
 })
 export class AppModule {}

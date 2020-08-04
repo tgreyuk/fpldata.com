@@ -1,7 +1,7 @@
-import { HttpService, Injectable } from '@nestjs/common';
+import { HttpService, Injectable, OnModuleInit } from '@nestjs/common';
 import * as humps from 'humps';
 import * as NodeCache from 'node-cache';
-import { Observable, of } from 'rxjs';
+import { Observable, forkJoin, of } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
 import { BootstrapStatic } from './typings/interfaces/bootstrap-static.interface';
@@ -13,7 +13,7 @@ import { EventLive } from './typings/interfaces/event-live.interface';
 import { EventStatus } from './typings/interfaces/event-status.interface';
 
 @Injectable()
-export class ApiService {
+export class ApiService implements OnModuleInit {
   private apiCache: NodeCache;
   public currentEvent: number;
   public elements: Elements;
@@ -21,12 +21,17 @@ export class ApiService {
 
   constructor(private httpService: HttpService) {
     this.apiCache = new NodeCache();
-    this.bootstrap();
   }
 
-  bootstrap(): any {
+  onModuleInit() {
     this.getBootstrapStatic().subscribe(bootstrapStatic => {
       this.elements = bootstrapStatic.elements;
+      this.currentEvent = bootstrapStatic.events.find(
+        event => event.isCurrent,
+      ).id;
+      forkJoin(this.getEventLiveBatch(this.currentEvent)).subscribe(
+        liveEvents => (this.liveEvents = liveEvents),
+      );
     });
   }
 
@@ -57,9 +62,9 @@ export class ApiService {
     return this.getData<EntryHistory>(`/entry/${id}/history/`);
   }
 
-  getEntryPicksBatch(id: number, currentEvent: number) {
+  getEntryPicksBatch(id: number) {
     const observables: Observable<EntryPicksResponse>[] = [];
-    for (let i = 0; i < currentEvent; i++) {
+    for (let i = 0; i < this.currentEvent; i++) {
       observables.push(
         this.getData<EntryPicksResponse>(`/entry/${id}/event/${i + 1}/picks/`),
       );
