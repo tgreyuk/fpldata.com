@@ -19,7 +19,7 @@ import { EntryModule } from './entry/entry.module';
         '..',
         '..',
         'packages',
-        'frontend',
+        'client',
         'dist',
         'fpldata',
       ),
@@ -28,7 +28,7 @@ import { EntryModule } from './entry/entry.module';
       autoSchemaFile: join(process.cwd(), 'src/schema.graphql'),
       typePaths: ['./**/*.graphql'],
       definitions: {
-        path: join(process.cwd(), '../frontend/src/app/core/api/api.types.ts'),
+        path: join(process.cwd(), '../client/src/app/core/api/api.types.ts'),
       },
       debug: true,
       playground: true,
