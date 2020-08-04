@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently --kill-others \"cd ./packages/backend && npm run start:dev\" \"cd ./packages/frontend && npm run start\"",
+    "start:dev": "concurrently --kill-others \"cd ./packages/backend && npm run start:dev\" \"cd ./packages/frontend && npm run start\"",
+    "start:prod": "npm run build && cd ./packages/backend && npm run start:prod",
+    "build": "npm run build:backend && npm run build:frontend",
+    "build:backend": "cd ./packages/backend && npm run build",
+    "build:frontend": "cd ./packages/frontend && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -29,6 +29,8 @@ export class EntryResolver {
             name: entry.name,
             region: entry.playerRegionName,
             flagIso: getFlagIso(entry.playerRegionIsoCodeShort),
+            overallPoints: entry.summaryOverallPoints,
+            overallRank: entry.summaryOverallRank,
           },
         };
       }),

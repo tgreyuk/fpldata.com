@@ -68,4 +68,6 @@ type Summary {
   name: String!
   region: String!
   flagIso: String!
+  overallPoints: Float!
+  overallRank: Float!
 }
