@@ -7,16 +7,8 @@ const routes: Routes = [
   { path: '', component: LookupComponent },
   {
     path: ':id',
-
-    children: [
-      {
-        path: '',
-        loadChildren: () =>
-          import('./features/scorecard/scorecard.module').then(
-            (m) => m.ScoreCardModule
-          ),
-      },
-    ],
+    loadChildren: () =>
+      import('./entry/entry.module').then((m) => m.EntryModule),
   },
   { path: 'error', component: LookupComponent },
 ];
