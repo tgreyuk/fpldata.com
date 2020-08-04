@@ -1,0 +1,22 @@
+<h1>Players</h1>
+
+<table *ngIf="players">
+  <tr>
+    <th (click)="sortByPoints('webName')">Player</th>
+    <th (click)="sortByPoints('played')">P</th>
+    <th (click)="sortByPoints('minutes')">M</th>
+    <th (click)="sortByPoints('basePoints')">BP</th>
+    <th (click)="sortByPoints('captainPoints')">CP</th>
+    <th (click)="sortByPoints('totalPoints')">TP</th>
+    <th (click)="sortByPoints('average')">AV</th>
+  </tr>
+  <tr *ngFor="let player of sortedPlayers">
+    <td>{{ player.webName }}</td>
+    <td>{{ player.played }}</td>
+    <td>{{ player.minutes }}</td>
+    <td>{{ player.basePoints }}</td>
+    <td>{{ player.captainPoints }}</td>
+    <td>{{ player.totalPoints }}</td>
+    <td>{{ player.average }}</td>
+  </tr>
+</table>

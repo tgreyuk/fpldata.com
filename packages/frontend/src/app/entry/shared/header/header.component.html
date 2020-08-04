@@ -1,0 +1,9 @@
+<div *ngIf="entry">
+  <h1>{{ entry.name }}</h1>
+  <p>{{ entry.region }}</p>
+  <img
+    width="100"
+    src="assets/flags/{{ entry.flagIso }}.svg"
+    [alt]="entry.region"
+  />
+</div>

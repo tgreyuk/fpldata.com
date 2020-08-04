@@ -1,13 +1,5 @@
-<div *ngIf="entry">
-  <h1>{{ entry.firstName }} {{ entry.lastName }}</h1>
-  <p>{{ entry.region }}</p>
-  <img
-    width="100"
-    src="assets/flags/{{ entry.flagIso }}.svg"
-    [alt]="entry.region"
-  />
-</div>
-<table *ngIf="scoreCard">
+<h1>Scorecard</h1>
+<table *ngIf="scorecard">
   <tr>
     <th>Action</th>
     <th class="amount">Value</th>
@@ -15,7 +7,7 @@
 
     <th class="amount">Total</th>
   </tr>
-  <tr *ngFor="let action of scoreCard.actions">
+  <tr *ngFor="let action of scorecard.actions">
     <td>{{ action.description }}</td>
     <td class="amount">{{ action.points }}</td>
     <td
@@ -29,14 +21,14 @@
 
   <tr>
     <td class="total" colspan="3">Points scored</td>
-    <td class="total">{{ scoreCard.grossTotal }}</td>
+    <td class="total">{{ scorecard.grossTotal }}</td>
   </tr>
   <tr>
     <td class="total" colspan="3">Total transfer cost</td>
-    <td class="total">{{ scoreCard.transferCost }}</td>
+    <td class="total">{{ scorecard.transferCost }}</td>
   </tr>
   <tr>
     <td class="total" colspan="3">Overall points total</td>
-    <td class="total">{{ scoreCard.netTotal }}</td>
+    <td class="total">{{ scorecard.netTotal }}</td>
   </tr>
 </table>
