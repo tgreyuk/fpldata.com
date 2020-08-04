@@ -1,0 +1,28 @@
+@import "./functions";
+.menu {
+  margin-bottom: 6px;
+  nav {
+    clear: both;
+  }
+  ul {
+    margin: auto;
+    display: table;
+  }
+  li {
+    display: table-cell;
+
+    border-right: 1px solid #333;
+    &:last-child {
+      border-right: none;
+    }
+    a {
+      font-size: rem(18px);
+      color: #333;
+      text-decoration: none;
+      padding: 0 10px;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

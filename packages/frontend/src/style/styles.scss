@@ -1,0 +1,65 @@
+@import "./functions";
+
+body {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  color: #333;
+  padding: 20px 40px;
+  font-weight: 300;
+}
+h2 {
+  font-size: rem(32px);
+  margin-bottom: 25px;
+}
+a {
+  color: rgb(55, 0, 60);
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th {
+  text-align: left;
+  padding: 10px;
+  background: #eee;
+  font-weight: 400;
+}
+th.sortable {
+  cursor: pointer;
+}
+td {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+.amount {
+  text-align: center;
+  &--total {
+    text-align: right;
+  }
+}
+
+.total {
+  border-top: 1px solid #333;
+  font-weight: 400;
+  text-align: right;
+  &--overall {
+    font-weight: bold;
+  }
+}
+.minus {
+  color: red;
+  text-align: right;
+}
+.plus {
+  // color: green;
+  text-align: right;
+}
+
+strong {
+  font-weight: bold;
+}
+
+p {
+  margin-bottom: rem(12px);
+  line-height: 1.4;
+}

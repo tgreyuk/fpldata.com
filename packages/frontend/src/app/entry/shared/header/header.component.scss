@@ -1,0 +1,58 @@
+@import "./functions";
+
+.header {
+  margin-bottom: 15px;
+  background: rgb(55, 0, 60);
+  color: #fff;
+  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px 0 0;
+
+  &__changelink {
+    margin-right: auto;
+    font-size: rem(15px);
+    margin-left: 12px;
+    color: #fff;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__title {
+    a {
+      font-size: 32px;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: #fff;
+    }
+  }
+
+  &__flag {
+    width: 70px;
+    margin-right: 20px;
+    border-right: 1px solid #ddd;
+  }
+
+  dl {
+    margin-left: auto;
+    font-size: rem(15px);
+  }
+  dt {
+    float: left;
+    clear: left;
+    width: 70px;
+    padding: 2px 0 2px 0;
+    font-weight: 400;
+  }
+  dt::after {
+    content: ":";
+  }
+  dd {
+    margin: 0 0 0 70px;
+    padding: 2px 0 2px 0;
+  }
+}

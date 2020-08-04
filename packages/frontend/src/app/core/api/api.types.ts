@@ -72,4 +72,6 @@ export interface Summary {
     name: string;
     region: string;
     flagIso: string;
+    overallPoints: number;
+    overallRank: number;
 }

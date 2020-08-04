@@ -1,9 +1,21 @@
-<div *ngIf="entry">
-  <h1>{{ entry.name }}</h1>
-  <p>{{ entry.region }}</p>
-  <img
-    width="100"
-    src="assets/flags/{{ entry.flagIso }}.svg"
-    [alt]="entry.region"
-  />
+<div class="header">
+  <h1 class="header__title">
+    <a routerLink="dashboard"
+      ><img
+        class="header__flag"
+        src="assets/flags/{{ entry.flagIso }}.svg"
+        [alt]="entry.region"
+      />
+      {{ entry.name }}</a
+    >
+  </h1>
+  <a class="header__changelink" routerLink="/">Change</a>
+  <div class="header__summary">
+    <dl>
+      <dt>Points</dt>
+      <dd>{{ entry.overallPoints }}</dd>
+      <dt>Rank</dt>
+      <dd>{{ entry.overallRank | number }}</dd>
+    </dl>
+  </div>
 </div>

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ngx-fpldata": {
+    "fpldata": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,19 +17,21 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ngx-fpldata",
+            "outputPath": "dist/fpldata",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
-              "src/styles.scss"
+              "node_modules/reset.css/reset.css",
+              "node_modules/flexboxgrid/css/flexboxgrid.css",
+              "src/style/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/style"]
+            },
             "scripts": []
           },
           "configurations": {
@@ -66,18 +68,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ngx-fpldata:build"
+            "browserTarget": "fpldata:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ngx-fpldata:build:production"
+              "browserTarget": "fpldata:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ngx-fpldata:build"
+            "browserTarget": "fpldata:build"
           }
         },
         "test": {
@@ -87,13 +89,8 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.scss"],
             "scripts": []
           }
         },
@@ -105,24 +102,23 @@
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ngx-fpldata:serve"
+            "devServerTarget": "fpldata:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ngx-fpldata:serve:production"
+              "devServerTarget": "fpldata:serve:production"
             }
           }
         }
       }
-    }},
-  "defaultProject": "ngx-fpldata"
+    }
+  },
+  "defaultProject": "fpldata"
 }

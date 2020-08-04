@@ -1,3 +1,5 @@
-<app-header></app-header>
-<app-menu></app-menu>
-<router-outlet></router-outlet>
+<div *ngIf="entry">
+  <app-header [entry]="entry"></app-header>
+  <app-menu></app-menu>
+  <router-outlet></router-outlet>
+</div>

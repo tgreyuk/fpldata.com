@@ -26,6 +26,8 @@ export class ApiService {
             summary {
               name
               flagIso
+              overallPoints
+              overallRank
             }
           }
         }

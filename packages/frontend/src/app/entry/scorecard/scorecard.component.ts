@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngxs/store';
-import { mergeMap, switchMap, take } from 'rxjs/operators';
+import { mergeMap, take } from 'rxjs/operators';
 import { Entry, Scorecard } from 'src/app/core/api/api.types';
 import { GetScorecard } from 'src/app/core/store/store.actions';
 import { AppState } from 'src/app/core/store/store.state';
@@ -14,19 +15,17 @@ export class ScorecardComponent implements OnInit {
   entry: Entry;
   scorecard: Scorecard;
 
-  constructor(private store: Store) {}
+  constructor(private route: ActivatedRoute, private store: Store) {}
   ngOnInit() {
+    const entryId = this.route.parent.snapshot.paramMap.get('id');
+
     this.store
-      .select(AppState.getRouteId())
+      .dispatch(new GetScorecard(entryId))
       .pipe(
         take(1),
-        switchMap((id) =>
-          this.store.dispatch(new GetScorecard(id)).pipe(
-            take(1),
-            mergeMap(() => this.store.select(AppState.getScorecard(id)))
-          )
-        )
+        mergeMap(() => this.store.select(AppState.getScorecard(entryId)))
       )
+
       .subscribe((scorecard) => {
         this.scorecard = scorecard;
       });

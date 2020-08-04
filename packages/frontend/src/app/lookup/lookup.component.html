@@ -1,8 +1,7 @@
-<h1>fpldata.com</h1>
-
-<p>Data analysis tool for Fantasy Premier League managers.</p>
-
-<hr />
+<div class="header">
+  <h1>fpldata.com (beta)</h1>
+  <p>Data analysis tool for Fantasy Premier League managers</p>
+</div>
 
 <div *ngIf="hasError" role="alert">
   There was an error.
@@ -16,16 +15,16 @@
 
 <form [formGroup]="lookupForm" (ngSubmit)="onSubmit()">
   <label
-    >Name:
+    >Team ID:
     <input
+      class="field"
       type="text"
       aria-describedby="emailHelp"
       formControlName="entryId"
       maxlength="10"
     />
   </label>
-
-  <button type="submit">Find Entry</button>
+  <button type="submit" class="submit">Find Team</button>
 </form>
 
 <div id="emailHelp">

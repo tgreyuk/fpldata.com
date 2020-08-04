@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EntryComponent } from './entry.component';
-import { PlayersComponent } from './players/players.component';
+import { PicksComponent } from './picks/picks.component';
 import { ScorecardComponent } from './scorecard/scorecard.component';
 
 const routes: Routes = [
@@ -11,24 +11,10 @@ const routes: Routes = [
     path: '',
     component: EntryComponent,
     children: [
-      { path: '', component: DashboardComponent },
-      { path: 'players', component: PlayersComponent },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'picks', component: PicksComponent },
       { path: 'scorecard', component: ScorecardComponent },
-      /*
-      {
-        path: 'players',
-        loadChildren: () =>
-          import('../features/players/players.module').then(
-            (m) => m.PlayersModule
-          ),
-      },
-      {
-        path: 'scorecard',
-        loadChildren: () =>
-          import('../features/scorecard/scorecard.module').then(
-            (m) => m.ScoreCardModule
-          ),
-      },*/
     ],
   },
 ];

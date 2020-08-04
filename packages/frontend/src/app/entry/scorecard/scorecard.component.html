@@ -1,11 +1,10 @@
-<h1>Scorecard</h1>
+<h2>Scorecard</h2>
 <table *ngIf="scorecard">
   <tr>
     <th>Action</th>
     <th class="amount">Value</th>
     <th class="amount">Qty</th>
-
-    <th class="amount">Total</th>
+    <th class="amount amount--total">Total</th>
   </tr>
   <tr *ngFor="let action of scorecard.actions">
     <td>{{ action.description }}</td>
@@ -20,15 +19,15 @@
   </tr>
 
   <tr>
-    <td class="total" colspan="3">Points scored</td>
+    <td class="total" colspan="3">Points scored:</td>
     <td class="total">{{ scorecard.grossTotal }}</td>
   </tr>
   <tr>
-    <td class="total" colspan="3">Total transfer cost</td>
-    <td class="total">{{ scorecard.transferCost }}</td>
+    <td class="total" colspan="3">Total transfer cost:</td>
+    <td class="total minus">{{ scorecard.transferCost }}</td>
   </tr>
   <tr>
-    <td class="total" colspan="3">Overall points total</td>
-    <td class="total">{{ scorecard.netTotal }}</td>
+    <td class="total total--overall" colspan="3">Overall points total</td>
+    <td class="total total--overall">{{ scorecard.netTotal }}</td>
   </tr>
 </table>

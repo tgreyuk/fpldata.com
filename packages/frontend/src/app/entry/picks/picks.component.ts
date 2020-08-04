@@ -1,36 +1,35 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngxs/store';
 import orderBy from 'lodash/orderBy';
 import { Subject } from 'rxjs';
-import { mergeMap, switchMap, take } from 'rxjs/operators';
+import { mergeMap, take } from 'rxjs/operators';
 import { GetPlayers } from 'src/app/core/store/store.actions';
 import { AppState } from 'src/app/core/store/store.state';
 
 @Component({
   selector: 'app-players',
-  templateUrl: './players.component.html',
-  styleUrls: ['./players.component.scss'],
+  templateUrl: './picks.component.html',
+  styleUrls: ['./picks.component.scss'],
 })
-export class PlayersComponent implements OnInit {
+export class PicksComponent implements OnInit {
   destroy$ = new Subject<void>();
   entry: any;
   players: any;
   sortedPlayers: any;
   sortOrder: 'desc' | 'asc';
-  constructor(private store: Store) {}
+  constructor(private route: ActivatedRoute, private store: Store) {}
 
   ngOnInit() {
+    const entryId = this.route.parent.snapshot.paramMap.get('id');
+
     this.store
-      .select(AppState.getRouteId())
+      .dispatch(new GetPlayers(entryId))
       .pipe(
         take(1),
-        switchMap((id) =>
-          this.store.dispatch(new GetPlayers(id)).pipe(
-            take(1),
-            mergeMap(() => this.store.select(AppState.getPlayers(id)))
-          )
-        )
+        mergeMap(() => this.store.select(AppState.getPlayers(entryId)))
       )
+
       .subscribe((players) => {
         this.players = players;
         this.sortedPlayers = players;
