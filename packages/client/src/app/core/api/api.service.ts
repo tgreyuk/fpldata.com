@@ -6,6 +6,7 @@ import { print } from 'graphql/language/printer';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { environment } from '../../../environments/environment';
 import { Entry } from './api.types';
 
 interface QueryResult {
@@ -86,7 +87,7 @@ export class ApiService {
 
   private query(query: DocumentNode, variables: {}): Observable<QueryResult> {
     return this.http
-      .post<{ data: QueryResult }>(`http://localhost:3000/graphql`, {
+      .post<{ data: QueryResult }>(environment.apiUrl, {
         query: print(query),
         variables,
       })
