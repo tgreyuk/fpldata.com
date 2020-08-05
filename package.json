@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start:dev": "concurrently --kill-others \"cd ./packages/server && npm run start:dev\" \"cd ./packages/client && npm run start\"",
-    "start:prod": "npm run build && cd ./packages/server && npm run start:prod",
+    "start:prod": "cd ./packages/server && npm run start:prod",
     "build": "npm run build:server && npm run build:client",
     "build:server": "cd ./packages/server && npm run build",
     "build:client": "cd ./packages/client && npm run build",
