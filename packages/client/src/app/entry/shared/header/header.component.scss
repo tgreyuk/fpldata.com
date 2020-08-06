@@ -40,6 +40,10 @@
     h1 {
       margin-bottom: 10px;
       font-size: rem(28px);
+      a {
+        color: #fff;
+        text-decoration: none;
+      }
       @include lg {
         font-size: rem(32px);
         margin-bottom: rem(3px);
