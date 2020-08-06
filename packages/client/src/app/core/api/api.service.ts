@@ -37,21 +37,30 @@ export class ApiService {
     ).pipe(map((result) => result.entry));
   }
 
-  getPlayers(id: string): Observable<Entry> {
+  getPicks(id: string): Observable<Entry> {
     return this.query(
       gql`
         query($id: Int!) {
           entry(id: $id) {
-            players {
+            picks {
+              type
               webName
               played
               minutes
               goalsScored
+              cleanSheets
               assists
+              saves
               basePoints
               captainPoints
               totalPoints
               average
+              bonus
+              penaltiesSaved
+              ownGoals
+              penaltiesMissed
+              yellowCards
+              redCards
             }
           }
         }

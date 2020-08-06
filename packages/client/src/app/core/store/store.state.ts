@@ -3,18 +3,12 @@ import { Action, State, StateContext, createSelector } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
 
 import { ApiService } from '../api/api.service';
-import {
-  GetEntryById,
-  GetPlayers,
-  GetRouteId,
-  GetScorecard,
-} from './store.actions';
+import { GetEntryById, GetPlayers, GetScorecard } from './store.actions';
 import { StoreModel } from './store.models';
 
 @State<StoreModel>({
   name: 'store',
   defaults: {
-    routeId: null,
     entries: {},
   },
 })
@@ -32,7 +26,7 @@ export class AppState {
   static getPlayers(id: string) {
     return createSelector(
       [AppState],
-      (state: StoreModel) => state.entries[id].players
+      (state: StoreModel) => state.entries[id].picks
     );
   }
 
@@ -41,10 +35,6 @@ export class AppState {
       [AppState],
       (state: StoreModel) => state.entries[id].scorecard
     );
-  }
-
-  static getRouteId() {
-    return createSelector([AppState], (state: StoreModel) => state.routeId);
   }
 
   @Action(GetEntryById)
@@ -66,20 +56,21 @@ export class AppState {
       })
     );
   }
+
   @Action(GetPlayers)
   getPlayers(ctx: StateContext<StoreModel>, action: GetPlayers) {
     const store = ctx.getState();
     const id = action.id;
 
-    if (store.entries[id] && store.entries[id].players) {
+    if (store.entries[id] && store.entries[id].picks) {
       return;
     }
 
-    return this.dataService.getPlayers(id).pipe(
+    return this.dataService.getPicks(id).pipe(
       tap((result) => {
         ctx.patchState({
           entries: {
-            [id]: { ...ctx.getState().entries[id], players: result.players },
+            [id]: { ...ctx.getState().entries[id], picks: result.picks },
           },
         });
       })
@@ -107,10 +98,5 @@ export class AppState {
         });
       })
     );
-  }
-
-  @Action(GetRouteId)
-  getRouteId(ctx: StateContext<StoreModel>, action: GetRouteId) {
-    ctx.patchState({ routeId: action.id });
   }
 }

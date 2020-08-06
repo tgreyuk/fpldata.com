@@ -31,19 +31,28 @@ export interface Entry {
     id: number;
     summary: Summary;
     scorecard: Scorecard;
-    players: Player[];
+    picks: Pick[];
 }
 
-export interface Player {
+export interface Pick {
+    type: number;
     webName: string;
     played: number;
     minutes: number;
     goalsScored: number;
+    cleanSheets?: number;
     assists: number;
+    saves?: number;
+    penaltiesSaved?: number;
     basePoints: number;
     captainPoints: number;
     totalPoints: number;
     average: number;
+    bonus: number;
+    ownGoals?: number;
+    penaltiesMissed?: number;
+    yellowCards?: number;
+    redCards?: number;
 }
 
 export interface IQuery {
