@@ -1,24 +1,33 @@
 @import "./functions";
+@import "./mixins";
 
 body {
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
   color: #333;
-  padding: 20px 40px;
+  padding: rem(15px);
   font-weight: 300;
+  @include lg {
+    padding: rem(20px) rem(40px);
+  }
 }
 
 .container {
-  max-width: 1600px;
+  max-width: 1300px;
   margin: auto;
 }
 h2 {
-  font-size: rem(32px);
-  margin-bottom: 25px;
+  font-size: rem(34px);
+  margin-bottom: 30px;
+  text-align: center;
 }
 h3 {
-  font-size: rem(22px);
+  font-size: rem(24px);
   margin-bottom: 15px;
+}
+.intro {
+  font-size: rem(18px);
+  margin-bottom: 24px;
 }
 a {
   color: rgb(55, 0, 60);

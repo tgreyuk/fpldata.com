@@ -1,21 +1,35 @@
 <div class="header">
-  <h1 class="header__title">
-    <a routerLink="dashboard"
-      ><img
-        class="header__flag"
-        src="assets/flags/{{ entry.flagIso }}.svg"
-        [alt]="entry.region"
-      />
-      {{ entry.name }}</a
-    >
-  </h1>
-  <a class="header__changelink" routerLink="/">Change</a>
-  <div class="header__summary">
-    <dl>
-      <dt>Points</dt>
-      <dd>{{ entry.overallPoints }}</dd>
-      <dt>Rank</dt>
-      <dd>{{ entry.overallRank | number }}</dd>
-    </dl>
+  <img
+    class="header__flag"
+    src="assets/flags/{{ entry.flagIso }}.svg"
+    [alt]="entry.region"
+  />
+  <div class="header__title">
+    <h1>
+      {{ entry.name }}
+    </h1>
+    <div class="header__summary">
+      <dl>
+        <dt>Points</dt>
+        <dd>{{ entry.overallPoints }}</dd>
+        <dt>Rank</dt>
+        <dd>{{ entry.overallRank | number }}</dd>
+      </dl>
+
+      <a class="header__changelink" routerLink="/">Change</a>
+    </div>
+  </div>
+
+  <div class="header__menu">
+    <nav>
+      <ul>
+        <li>
+          <a routerLink="scorecard" routerLinkActive="active">Scorecard</a>
+        </li>
+        <li>
+          <a routerLink="picks" routerLinkActive="active">Picks</a>
+        </li>
+      </ul>
+    </nav>
   </div>
 </div>

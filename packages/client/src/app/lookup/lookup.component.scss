@@ -1,37 +1,77 @@
 @import "./functions";
+@import "./mixins";
 
 .header {
   margin-bottom: 25px;
   background: rgb(55, 0, 60);
   color: #fff;
   border: 1px solid #ddd;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px;
+  padding: rem(20px);
   font-weight: 400;
+  text-align: center;
   h1 {
     font-size: rem(25px);
+    margin-bottom: rem(20px);
+  }
+  h2 {
+    margin-bottom: rem(50px);
   }
   p {
     margin-bottom: 0;
   }
-}
 
+  @include lg {
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    h1 {
+      margin-bottom: 0;
+    }
+  }
+}
+.error {
+  color: red;
+}
 form {
   margin-bottom: 25px;
+  font-size: rem(18px);
 }
 
 .field {
+  box-sizing: border-box;
   padding: 6px;
-  margin-right: 5px;
-  border: 1px solid #333;
+  border: 1px solid #ddd;
+  font-family: "Open Sans", sans-serif;
+  font-size: rem(18px);
+  width: 100%;
+  margin-top: rem(10px);
+  margin-bottom: rem(10px);
+  @include lg {
+    margin-right: 10px;
+    margin-left: 5px;
+    width: 200px;
+  }
 }
 
 .submit {
-  background: none;
-  border: 1px solid #333;
+  background: #02894e;
+  font-size: rem(18px);
+  border: none;
+  color: #fff;
   cursor: pointer;
-  padding: 6px;
-  font-weight: bold;
+  padding: 8px;
+  font-weight: 400;
+  font-family: "Open Sans", sans-serif;
+  width: 100%;
+  @include lg {
+    width: auto;
+  }
+}
+
+.lookup {
+  @include lg {
+    max-width: 400px;
+    margin: auto;
+  }
 }

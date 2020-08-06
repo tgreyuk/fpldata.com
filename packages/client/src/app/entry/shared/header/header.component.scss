@@ -1,58 +1,121 @@
 @import "./functions";
+@import "./mixins";
 
 .header {
-  margin-bottom: 15px;
+  margin-bottom: 30px;
   background: rgb(55, 0, 60);
   color: #fff;
   border: 1px solid #ddd;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 5px 10px 5px 5px;
+  text-align: center;
+  padding: 10px;
+
+  @include lg {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
   &__changelink {
-    margin-right: auto;
     font-size: rem(15px);
-    margin-left: 12px;
+
     color: #fff;
     text-decoration: none;
+
+    @include lg {
+      padding-left: rem(6px);
+      border-left: 1px solid #fff;
+    }
+
     &:hover {
       text-decoration: underline;
     }
   }
 
   &__title {
-    a {
-      font-size: 32px;
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-      color: #fff;
+    text-align: center;
+    @include lg {
+      margin-right: auto;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      font-size: rem(28px);
+      @include lg {
+        font-size: rem(32px);
+        margin-bottom: rem(3px);
+        display: flex;
+      }
     }
   }
 
   &__flag {
     width: 70px;
-    margin-right: 20px;
+    margin-right: 10px;
     border-right: 1px solid #ddd;
+    margin-bottom: rem(6px);
+  }
+
+  &__summary {
+    display: inline;
+    text-align: center;
+    line-height: 1.6;
+
+    @include lg {
+      display: flex;
+    }
+  }
+
+  &__menu {
+    margin-top: rem(16px);
+    @include lg {
+      margin-top: 0;
+    }
+    nav {
+      clear: both;
+    }
+    ul {
+      margin: auto;
+      display: table;
+    }
+    li {
+      display: table-cell;
+      border-right: 1px solid #fff;
+
+      &:last-child {
+        border-right: none;
+      }
+      a {
+        font-size: rem(18px);
+        color: #fff;
+        text-decoration: none;
+        padding: 0 10px;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
   }
 
   dl {
     margin-left: auto;
     font-size: rem(15px);
+
+    @include lg {
+      margin-left: 0;
+    }
   }
   dt {
-    float: left;
-    clear: left;
-    width: 70px;
     padding: 2px 0 2px 0;
     font-weight: 400;
+    display: inline;
+    margin-right: 4px;
   }
   dt::after {
     content: ":";
   }
   dd {
-    margin: 0 0 0 70px;
+    display: inline;
     padding: 2px 0 2px 0;
+    margin-right: 10px;
   }
 }

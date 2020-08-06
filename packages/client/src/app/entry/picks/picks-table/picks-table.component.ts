@@ -1,7 +1,25 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngxs/store';
 import lowerCase from 'lodash/lowerCase';
 import orderBy from 'lodash/orderBy';
 import { Pick } from 'src/app/core/api/api.types';
+
+interface StatsMap {
+  webName: string;
+  minutes: string;
+  bonus: string;
+  penaltiesMissed: string;
+  penaltiesSaved: string;
+  saves: string;
+  goalsScored: string;
+  cleanSheets: string;
+  totalPoints: string;
+  average: string;
+  assists: string;
+  ownGoals: string;
+  yellowCards: string;
+  redCards: string;
+}
 
 @Component({
   selector: 'app-picks-table',
@@ -16,28 +34,27 @@ export class PicksTableComponent implements OnInit {
   sortOrder: 'desc' | 'asc' = 'desc';
   statsMap = {
     webName: 'Player',
-    played: 'p',
+    minutes: 'm',
     bonus: 'b',
-    penaltiesMissed: 'pm',
     penaltiesSaved: 'ps',
     saves: 's',
-    goalsScored: 'g',
     cleanSheets: 'cs',
-    totalPoints: 'pts',
-    average: 'av',
+    goalsScored: 'g',
     assists: 'a',
+    penaltiesMissed: 'pm',
     ownGoals: 'og',
     yellowCards: 'yc',
     redCards: 'rc',
-    minutes: 'm',
+    totalPoints: 'pts',
+    average: 'av',
   };
+  legend: { [key: string]: string }[];
 
-  constructor() {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
     this.sort(['minutes']);
     this.cols = [
-      'webName',
       'minutes',
       'bonus',
       ...this.cols,
@@ -47,21 +64,18 @@ export class PicksTableComponent implements OnInit {
       'totalPoints',
       'average',
     ];
+    this.legend = Object.entries(this.statsMap)
+      .filter(([key]) => key !== 'webName' && this.cols.includes(key))
+      .map(([key, value]) => {
+        return { key: value, value: lowerCase(key) };
+      });
   }
   getLabel(key: string) {
     return this.statsMap[key] || key;
   }
 
-  getDescription(key: string) {
-    return lowerCase(key);
-  }
-
   sort(key: string | string[]) {
     this.sortedPicks = orderBy(this.picks, key, this.sortOrder);
     this.sortOrder = this.sortOrder === 'desc' ? 'asc' : 'desc';
-  }
-
-  get legend() {
-    return this.cols.filter((key) => key !== 'webName');
   }
 }

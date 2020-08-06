@@ -1,0 +1,6 @@
+// Small devices
+@mixin lg {
+  @media (min-width: 700px) {
+    @content;
+  }
+}

@@ -27,7 +27,6 @@ export class PicksComponent implements OnInit {
         take(1),
         mergeMap(() => this.store.select(AppState.getPlayers(entryId)))
       )
-
       .subscribe((picks) => {
         this.picks = groupBy(picks, 'type');
       });
