@@ -1,10 +1,7 @@
 # fpl-data
 
-This is the codebase for [fpl-data](https://fpl-data.herokuapp.com/) - a fun full-stack personal project.
+This is the codebase for [fpl-data](https://fpl-data.herokuapp.com/) - a web application producing data analysis insights for [Fantasy Premier League](https://fantasy.premierleague.com) managers. Built as a fun personal project.
 
-## What is it?
-
-A web application producing data analysis insights for [Fantasy Premier League](https://fantasy.premierleague.com) managers.
 
 ## Technology
 
@@ -13,4 +10,4 @@ A web application producing data analysis insights for [Fantasy Premier League](
 
 ## Acknowledgements
 
-Inspiration from [FPL Statistico](https://www.anewpla.net/fpl/report/)
+Inspiration from [FPL Statistico](https://www.anewpla.net/fpl/report/).
