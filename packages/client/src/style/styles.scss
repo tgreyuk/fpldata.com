@@ -7,9 +7,18 @@ body {
   padding: 20px 40px;
   font-weight: 300;
 }
+
+.container {
+  max-width: 1600px;
+  margin: auto;
+}
 h2 {
   font-size: rem(32px);
   margin-bottom: 25px;
+}
+h3 {
+  font-size: rem(22px);
+  margin-bottom: 15px;
 }
 a {
   color: rgb(55, 0, 60);
