@@ -11,7 +11,7 @@ const routes: Routes = [
     path: '',
     component: EntryComponent,
     children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: '', redirectTo: 'scorecard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'picks', component: PicksComponent },
       { path: 'scorecard', component: ScorecardComponent },
