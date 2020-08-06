@@ -1,6 +1,6 @@
 import { ObjectType } from '@nestjs/graphql';
 
-import { Player } from './entry.player.model';
+import { Pick } from './entry.picks-pick.model';
 import { Scorecard } from './entry.score-card.model';
 import { Summary } from './entry.summary.model';
 
@@ -9,5 +9,5 @@ export class Entry {
   id: number;
   summary: Summary;
   scorecard: Scorecard;
-  players: Player[];
+  picks: Pick[];
 }

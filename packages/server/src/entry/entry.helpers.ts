@@ -1,8 +1,9 @@
 import { ScoreActionType } from './models/entry.score-card.action.model';
 
-const isDEF = (elementType: number) => elementType === 1 || elementType === 2;
-const isMID = (elementType: number) => elementType === 3;
-const isFWD = (elementType: number) => elementType === 4;
+export const isGKP = (elementType: number) => elementType === 1;
+export const isDEF = (elementType: number) => elementType === 2;
+export const isMID = (elementType: number) => elementType === 3;
+export const isFWD = (elementType: number) => elementType === 4;
 
 export const getStats: {
   [key: string]: (
@@ -20,7 +21,7 @@ export const getStats: {
     return null;
   },
   ['goals_scored']: (value: number, elementType: number) => {
-    if (isDEF(elementType)) {
+    if (isGKP(elementType) || isDEF(elementType)) {
       return { type: ScoreActionType.GOALS_SCORED_DEF, value };
     }
     if (isMID(elementType)) {
@@ -35,7 +36,7 @@ export const getStats: {
     value,
   }),
   ['clean_sheets']: (value: number, elementType: number) => {
-    if (isDEF(elementType)) {
+    if (isGKP(elementType) || isDEF(elementType)) {
       return { type: ScoreActionType.CLEAN_SHEETS_DEF, value };
     }
     if (isMID(elementType)) {

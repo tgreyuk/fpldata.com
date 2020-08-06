@@ -10,9 +10,16 @@ import { forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ApiService } from '../api/api.service';
 import { EntryPicksResponse } from '../api/typings/interfaces/entry-picks-response.interface';
-import { getFlagIso, getStats, initialState } from './entry.helpers';
+import {
+  getFlagIso,
+  getStats,
+  initialState,
+  isDEF,
+  isGKP,
+  isMID,
+} from './entry.helpers';
 import { Entry } from './models/entry.model';
-import { Player } from './models/entry.player.model';
+import { Pick } from './models/entry.picks-pick.model';
 import { Scorecard } from './models/entry.score-card.model';
 
 @Resolver(() => Entry)
@@ -38,18 +45,18 @@ export class EntryResolver {
   }
 
   @ResolveField()
-  async players(@Parent() entry: Entry) {
+  async picks(@Parent() entry: Entry) {
     const { id } = entry;
     return forkJoin(this.apiService.getEntryPicksBatch(id)).pipe(
       map(results => {
         const reducer = (
-          acc: Player[],
+          acc: Pick[],
           res: EntryPicksResponse,
           currentIndex: number,
         ) => {
           const currentEvent = this.apiService.liveEvents[currentIndex];
           const elements = currentEvent.elements;
-          const statsToUpdate = ['goalsScored', 'minutes', 'assists'];
+
           res.picks.forEach(pick => {
             if (pick.multiplier > 0) {
               const currentPick = elements.find(
@@ -58,51 +65,86 @@ export class EntryResolver {
               const element = this.apiService.elements.find(
                 element => element.id === pick.element,
               );
+
               if (currentPick.stats.minutes > 0) {
                 let elementToUpdate = acc.find(
                   player => player.webName === element.webName,
                 );
+                const elementType = element.elementType;
                 if (!elementToUpdate) {
                   elementToUpdate = {
+                    type: elementType,
                     webName: element.webName,
                     played: 0,
                     minutes: 0,
                     goalsScored: 0,
                     assists: 0,
+                    saves: 0,
+                    cleanSheets: 0,
                     basePoints: 0,
                     captainPoints: 0,
                     totalPoints: 0,
                     average: 0,
+                    bonus: 0,
+                    penaltiesSaved: 0,
+                    penaltiesMissed: 0,
+                    ownGoals: 0,
+                    yellowCards: 0,
+                    redCards: 0,
                   };
                   acc.push(elementToUpdate);
                 }
 
+                const addStat = (stat: string) => {
+                  elementToUpdate[stat] =
+                    elementToUpdate[stat] + currentPick.stats[stat];
+                };
+
+                const addProp = (prop: string, value: number) => {
+                  elementToUpdate[prop] = elementToUpdate[prop] + value;
+                };
+
                 const basePoints = currentPick.stats.totalPoints;
                 const totalPoints = basePoints * pick.multiplier;
                 const captainPoints = totalPoints - basePoints;
-                elementToUpdate.played = elementToUpdate.played + 1;
-                elementToUpdate.basePoints =
-                  elementToUpdate.basePoints + basePoints;
-                elementToUpdate.totalPoints =
-                  elementToUpdate.totalPoints + totalPoints;
-                elementToUpdate.captainPoints =
-                  elementToUpdate.captainPoints + captainPoints;
-                Object.entries(currentPick.stats).forEach(([key, value]) => {
-                  if (statsToUpdate.includes(key)) {
-                    elementToUpdate[key] = elementToUpdate[key] + value;
-                  }
-                });
+
+                addProp('played', 1);
+                addProp('basePoints', basePoints);
+                addProp('totalPoints', totalPoints);
+                addProp('captainPoints', captainPoints);
+
+                addStat('minutes');
+                addStat('goalsScored');
+                addStat('assists');
+                addStat('bonus');
+                addStat('ownGoals');
+                addStat('penaltiesMissed');
+                addStat('yellowCards');
+                addStat('redCards');
+
+                if (isGKP) {
+                  addStat('saves');
+                  addStat('penaltiesSaved');
+                }
+
+                if (
+                  isGKP(elementType) ||
+                  isDEF(elementType) ||
+                  isMID(elementType)
+                ) {
+                  addStat('cleanSheets');
+                }
               }
             }
           });
           return acc;
         };
 
-        const players = results.reduce(reducer, []);
-        return players.map(player => {
+        const picks = results.reduce(reducer, []);
+        return picks.map(pick => {
           return {
-            ...player,
-            average: (player.totalPoints / player.played).toFixed(2),
+            ...pick,
+            average: (pick.totalPoints / pick.played).toFixed(2),
           };
         });
       }),

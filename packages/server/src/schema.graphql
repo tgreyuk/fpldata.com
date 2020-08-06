@@ -6,19 +6,28 @@ type Entry {
   id: Float!
   summary: Summary!
   scorecard: Scorecard!
-  players: [Player!]!
+  picks: [Pick!]!
 }
 
-type Player {
+type Pick {
+  type: Float!
   webName: String!
   played: Float!
   minutes: Float!
   goalsScored: Float!
+  cleanSheets: Float
   assists: Float!
+  saves: Float
+  penaltiesSaved: Float
   basePoints: Float!
   captainPoints: Float!
   totalPoints: Float!
   average: Float!
+  bonus: Float!
+  ownGoals: Float
+  penaltiesMissed: Float
+  yellowCards: Float
+  redCards: Float
 }
 
 type Query {
