@@ -49,6 +49,7 @@ export class AppState {
     return this.dataService.getEntry(id).pipe(
       tap((result) => {
         ctx.patchState({
+          ...ctx.getState(),
           entries: {
             [id]: { ...ctx.getState().entries[id], summary: result.summary },
           },
@@ -69,6 +70,7 @@ export class AppState {
     return this.dataService.getPicks(id).pipe(
       tap((result) => {
         ctx.patchState({
+          ...ctx.getState(),
           entries: {
             [id]: { ...ctx.getState().entries[id], picks: result.picks },
           },
@@ -89,6 +91,7 @@ export class AppState {
     return this.dataService.getScorecard(id).pipe(
       tap((result) => {
         ctx.patchState({
+          ...ctx.getState(),
           entries: {
             [id]: {
               ...ctx.getState().entries[id],
