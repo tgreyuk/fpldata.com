@@ -26,7 +26,6 @@
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "node_modules/reset.css/reset.css",
-              "node_modules/flexboxgrid/css/flexboxgrid.css",
               "src/style/styles.scss"
             ],
             "stylePreprocessorOptions": {
