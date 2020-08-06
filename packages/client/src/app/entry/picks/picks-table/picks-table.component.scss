@@ -1,0 +1,15 @@
+.picks-table {
+  margin-bottom: 30px;
+
+  &__legend {
+    margin-bottom: 15px;
+    font-size: rem(10px);
+    li {
+      display: inline;
+      line-height: 1.2;
+    }
+    strong {
+      font-weight: 400;
+    }
+  }
+}

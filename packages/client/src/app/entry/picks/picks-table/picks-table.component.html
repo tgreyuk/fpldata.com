@@ -1,0 +1,18 @@
+<div *ngIf="sortedPicks" class="picks-table">
+  <h3>{{ title }}</h3>
+  <ul class="picks-table__legend">
+    <li *ngFor="let key of legend">
+      <strong>{{ getLabel(key) }}:</strong>&nbsp;{{ getDescription(key) }};
+    </li>
+  </ul>
+  <table>
+    <tr>
+      <th *ngFor="let key of cols" class="sortable" (click)="sort(key)">
+        {{ getLabel(key) }}
+      </th>
+    </tr>
+    <tr *ngFor="let pick of sortedPicks">
+      <td *ngFor="let key of cols">{{ pick[key] }}</td>
+    </tr>
+  </table>
+</div>

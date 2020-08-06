@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngxs/store';
-import orderBy from 'lodash/orderBy';
-import { Subject } from 'rxjs';
+import { Dictionary } from 'lodash';
+import groupBy from 'lodash/groupBy';
 import { mergeMap, take } from 'rxjs/operators';
+import { Pick } from 'src/app/core/api/api.types';
 import { GetPlayers } from 'src/app/core/store/store.actions';
 import { AppState } from 'src/app/core/store/store.state';
 
@@ -13,11 +14,8 @@ import { AppState } from 'src/app/core/store/store.state';
   styleUrls: ['./picks.component.scss'],
 })
 export class PicksComponent implements OnInit {
-  destroy$ = new Subject<void>();
-  entry: any;
-  players: any;
-  sortedPlayers: any;
-  sortOrder: 'desc' | 'asc';
+  picks: Dictionary<Pick[]>;
+
   constructor(private route: ActivatedRoute, private store: Store) {}
 
   ngOnInit() {
@@ -30,14 +28,8 @@ export class PicksComponent implements OnInit {
         mergeMap(() => this.store.select(AppState.getPlayers(entryId)))
       )
 
-      .subscribe((players) => {
-        this.players = players;
-        this.sortedPlayers = players;
+      .subscribe((picks) => {
+        this.picks = groupBy(picks, 'type');
       });
-  }
-
-  sortByPoints(key: string): void {
-    this.sortedPlayers = orderBy(this.players, key, this.sortOrder);
-    this.sortOrder = this.sortOrder === 'desc' ? 'asc' : 'desc';
   }
 }

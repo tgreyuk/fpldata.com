@@ -8,6 +8,7 @@ import { PicksComponent } from './picks/picks.component';
 import { ScorecardComponent } from './scorecard/scorecard.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { MenuComponent } from './shared/menu/menu.component';
+import { PicksTableComponent } from './picks/picks-table/picks-table.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { MenuComponent } from './shared/menu/menu.component';
     ScorecardComponent,
     HeaderComponent,
     MenuComponent,
+    PicksTableComponent,
   ],
   imports: [CommonModule, EntryRoutingModule],
 })
