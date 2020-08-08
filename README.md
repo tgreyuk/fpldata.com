@@ -1,4 +1,4 @@
-# fpl-data
+# fpldata.com
 
 This is the codebase for [fpldata.com](https://fpldata.com/) - a web application producing data analysis insights for [Fantasy Premier League](https://fantasy.premierleague.com) managers. Built as a fun personal project.
 
